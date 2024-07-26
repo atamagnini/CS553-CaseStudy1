@@ -1,5 +1,5 @@
 ---
-title: Gradio Chatbot
+title: Chatbot
 emoji: 💬
 colorFrom: yellow
 colorTo: purple
