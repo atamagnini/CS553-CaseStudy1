@@ -79,7 +79,7 @@ demo = gr.ChatInterface(
         gr.Checkbox(label="Check me!"),  # Checkbox
         gr.ColorPicker(label="Choose a color"),  # Color picker
         gr.TextArea(label="Additional notes", placeholder="Type any additional notes here..."),  # Text area
-        gr.Button(value="Custom Button", label="Press me!")  # Custom button
+        gr.Button(value="Press me!")  # Custom button
     ],
 )
 
