@@ -14,6 +14,7 @@ def respond(
     max_tokens,
     temperature,
     top_p,
+    uploaded_file=None,  # New parameter for file upload
 ):
     messages = [{"role": "system", "content": system_message}]
 
@@ -23,6 +24,12 @@ def respond(
         if val[1]:
             messages.append({"role": "assistant", "content": val[1]})
 
+    # Process the uploaded file if present
+    if uploaded_file:
+        file_content = uploaded_file.read().decode("utf-8")
+        # Use the content as needed; for now, just append it to the system message
+        messages.append({"role": "user", "content": f"User uploaded a file: {file_content}"})
+    
     messages.append({"role": "user", "content": message})
 
     response = ""
@@ -35,7 +42,6 @@ def respond(
         top_p=top_p,
     ):
         token = message.choices[0].delta.content
-
         response += token
         yield response
 
@@ -48,13 +54,9 @@ demo = gr.ChatInterface(
         gr.Textbox(value="You are a friendly Chatbot.", label="System message"),
         gr.Slider(minimum=1, maximum=2048, value=512, step=1, label="Max new tokens"),
         gr.Slider(minimum=0.1, maximum=4.0, value=0.7, step=0.1, label="Temperature"),
-        gr.Slider(
-            minimum=0.1,
-            maximum=1.0,
-            value=0.95,
-            step=0.05,
-            label="Top-p (nucleus sampling)",
-        ),
+        gr.Slider(minimum=0.1, maximum=1.0, value=0.95, step=0.05, label="Top-p (nucleus sampling)"),
+        gr.File(label="Upload a File"),  # New file uploader component
+        gr.Image(type="pil", label="Display Image"),  # New image viewer component
     ],
 )
 
