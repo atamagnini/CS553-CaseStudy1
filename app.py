@@ -58,6 +58,10 @@ def respond(
         response += token
         yield response
 
+# Define a dummy function to handle button clicks
+def on_button_click():
+    return "Button was clicked!"
+    
 """
 For information on how to customize the ChatInterface, peruse the gradio docs: https://www.gradio.app/docs/chatinterface
 """
