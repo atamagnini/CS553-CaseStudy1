@@ -36,46 +36,6 @@ def respond(
         response += token
         yield response
 
-# Custom CSS for styling the Submit button and other elements
-custom_css = """
-body {
-    background-color: #f0f8ff; /* Light blue background for the whole interface */
-}
-
-.gradio-container {
-    border-radius: 10px; /* Rounded corners for the whole Gradio interface */
-    padding: 20px;
-}
-
-#header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px; /* Adds space below the header */
-}
-
-#logo {
-    height: 50px; /* Logo size */
-}
-
-/* Style the Submit button */
-.gr-button {
-    background-color: #4CAF50 !important; /* Green background for the button */
-    color: white !important; /* White text color */
-    font-family: 'Arial', sans-serif !important; /* Custom font for the button text */
-    font-size: 16px !important; /* Font size */
-    padding: 10px 20px !important; /* Padding for the button */
-    border-radius: 5px !important; /* Rounded corners for the button */
-    border: none !important; /* Remove border */
-    cursor: pointer !important; /* Change cursor on hover */
-}
-
-/* Style the Submit button on hover */
-.gr-button:hover {
-    background-color: #45a049 !important; /* Darker green on hover */
-}
-"""
-
 # Gradio interface with additional components
 demo = gr.ChatInterface(
     respond,
@@ -92,7 +52,6 @@ demo = gr.ChatInterface(
             label="Top-p (nucleus sampling)",
         ),
     ],
-    css=custom_css
 )
 
 if __name__ == "__main__":
