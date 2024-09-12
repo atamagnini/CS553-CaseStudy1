@@ -1,35 +1,20 @@
-name: Sync Hugging Face Space to GitHub
-
+name: Sync to Hugging Face hub
 on:
-  schedule:
-    - cron: '0 0 * * *'  # This runs the workflow every day at midnight (UTC)
-  workflow_dispatch:  # Allows manual triggering
+  push:
+    branches: [main]
+
+  # to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
-  sync:
+  sync-to-hub:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Check out GitHub repository
-      uses: actions/checkout@v3
-
-    - name: Configure Git
-      run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-
-    - name: Clone Hugging Face Space
-      env:
-        HF_TOKEN: ${{ secrets.HF_TOKEN }}
-      run: |
-        git clone https://user:$HF_TOKEN@huggingface.co/spaces/mlops-cs553-fall24/chatbot hf-space
-        cd hf-space
-        git pull origin main
-        cd ..
-
-    - name: Sync with GitHub
-      run: |
-        rsync -av --exclude '.git' hf-space/ .
-        git add .
-        git commit -m "Sync from Hugging Face Space at $(date +'%Y-%m-%d %H:%M:%S')"
-        git push origin main
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          lfs: true
+      - name: Push to hub
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: git push --force https://atamagnini:$HF_TOKEN@huggingface.co/spaces/mlops-cs553-fall24/chatbot main
