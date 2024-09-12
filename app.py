@@ -36,50 +36,6 @@ def respond(
         response += token
         yield response
 
-# Custom CSS for global styling and chat window background
-custom_css = """
-body {
-    background-color: #f0f8ff; /* Light blue background for the whole interface */
-}
-
-.gradio-container {
-    border-radius: 10px; /* Rounded corners for the whole Gradio interface */
-    padding: 20px;
-}
-
-#header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px; /* Adds space below the header */
-}
-
-#logo {
-    height: 50px; /* Logo size */
-}
-
-.gr-button {
-    background-color: #007bff !important; /* Custom color for buttons */
-    color: white !important;
-    border-radius: 5px !important;
-}
-
-.gr-slider {
-    color: #007bff !important; /* Custom color for slider handles */
-}
-
-.gr-textbox {
-    border-color: #007bff !important; /* Custom border color for textboxes */
-}
-
-/* More general selector for chat window */
-.gradio-chatbot, .gr-chatbot-container, .gradio-container .gr-block {
-    background-color: #d3d3d3 !important; /* Gray background color for the chat window */
-    border-radius: 10px; /* Rounded corners for the chat window */
-    padding: 10px; /* Padding inside the chat window */
-}
-"""
-
 # Gradio interface with additional components
 demo = gr.ChatInterface(
     respond,
