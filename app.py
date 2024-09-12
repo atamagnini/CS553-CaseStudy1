@@ -72,8 +72,8 @@ body {
     border-color: #007bff !important; /* Custom border color for textboxes */
 }
 
-/* Chat window styling */
-.gr-chatbot {
+/* More general selector for chat window */
+.gradio-chatbot, .gr-chatbot-container, .gradio-container .gr-block {
     background-color: #d3d3d3 !important; /* Gray background color for the chat window */
     border-radius: 10px; /* Rounded corners for the chat window */
     padding: 10px; /* Padding inside the chat window */
