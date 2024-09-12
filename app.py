@@ -42,6 +42,32 @@ def respond(
 """
 For information on how to customize the ChatInterface, peruse the gradio docs: https://www.gradio.app/docs/chatinterface
 """
+
+# Custom CSS for changing the color scheme and adding a logo
+custom_css = """
+#component-1 {
+    background-color: #f0f8ff; /* Light blue background */
+    border-radius: 10px; /* Rounded corners for the input components */
+    padding: 10px;
+}
+
+#component-1 h1 {
+    display: inline-block;
+    margin: 0;
+}
+
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#logo {
+    height: 50px;
+}
+"""
+
+# Gradio interface with additional components
 demo = gr.ChatInterface(
     respond,
     additional_inputs=[
@@ -56,6 +82,7 @@ demo = gr.ChatInterface(
             label="Top-p (nucleus sampling)",
         ),
     ],
+    css=custom_css
 )
 
 
