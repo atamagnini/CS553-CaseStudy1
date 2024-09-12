@@ -1,12 +1,10 @@
 import gradio as gr
 from huggingface_hub import InferenceClient
 
-"""
-For more information on `huggingface_hub` Inference API support, please check the docs: https://huggingface.co/docs/huggingface_hub/v0.22.2/en/guides/inference
-"""
+# Initialize the InferenceClient
 client = InferenceClient("HuggingFaceH4/zephyr-7b-beta")
 
-
+# Define the response function
 def respond(
     message,
     history: list[tuple[str, str]],
@@ -35,35 +33,43 @@ def respond(
         top_p=top_p,
     ):
         token = message.choices[0].delta.content
-
         response += token
         yield response
 
-"""
-For information on how to customize the ChatInterface, peruse the gradio docs: https://www.gradio.app/docs/chatinterface
-"""
-
-# Custom CSS for changing the color scheme and adding a logo
+# Custom CSS for global styling
 custom_css = """
-#component-1 {
-    background-color: #f0f8ff; /* Light blue background */
-    border-radius: 10px; /* Rounded corners for the input components */
-    padding: 10px;
+body {
+    background-color: #f0f8ff; /* Light blue background for the whole interface */
 }
 
-#component-1 h1 {
-    display: inline-block;
-    margin: 0;
+.gradio-container {
+    border-radius: 10px; /* Rounded corners for the whole Gradio interface */
+    padding: 20px;
 }
 
 #header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 20px; /* Adds space below the header */
 }
 
 #logo {
-    height: 50px;
+    height: 50px; /* Logo size */
+}
+
+.gr-button {
+    background-color: #007bff !important; /* Custom color for buttons */
+    color: white !important;
+    border-radius: 5px !important;
+}
+
+.gr-slider {
+    color: #007bff !important; /* Custom color for slider handles */
+}
+
+.gr-textbox {
+    border-color: #007bff !important; /* Custom border color for textboxes */
 }
 """
 
@@ -85,7 +91,6 @@ demo = gr.ChatInterface(
     ],
     css=custom_css
 )
-
 
 if __name__ == "__main__":
     demo.launch()
