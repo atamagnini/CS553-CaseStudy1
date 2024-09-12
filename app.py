@@ -36,7 +36,7 @@ def respond(
         response += token
         yield response
 
-# Custom CSS for global styling
+# Custom CSS for global styling and chat window background
 custom_css = """
 body {
     background-color: #f0f8ff; /* Light blue background for the whole interface */
@@ -70,6 +70,13 @@ body {
 
 .gr-textbox {
     border-color: #007bff !important; /* Custom border color for textboxes */
+}
+
+/* Chat window styling */
+.gr-chatbot {
+    background-color: #d3d3d3 !important; /* Gray background color for the chat window */
+    border-radius: 10px; /* Rounded corners for the chat window */
+    padding: 10px; /* Padding inside the chat window */
 }
 """
 
