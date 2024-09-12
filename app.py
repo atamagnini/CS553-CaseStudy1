@@ -70,6 +70,7 @@ custom_css = """
 # Gradio interface with additional components
 demo = gr.ChatInterface(
     respond,
+    title="<div id='header'><h1>My Enhanced Chatbot</h1><img id='logo' src='https://github.com/atamagnini/mlops-cs553-fall24/blob/main/assets/logo.png'></div>"
     additional_inputs=[
         gr.Textbox(value="You are a friendly Chatbot.", label="System message"),
         gr.Slider(minimum=1, maximum=2048, value=512, step=1, label="Max new tokens"),
