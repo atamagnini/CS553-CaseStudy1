@@ -57,7 +57,8 @@ custom_css = """
 # Gradio interface with additional components and a funny subtitle
 demo = gr.ChatInterface(
     respond,
-    title="<div id='header'><h1>Bee Chatbot</h1><h3 style='color:gray;'>Making honey out of conversations!</h3><img id='logo' src='https://raw.githubusercontent.com/atamagnini/mlops-cs553-fall24/main/assets/logo.png'></div>",
+    title="<div id='header'><h1>Bee Chatbot</h1><img id='logo' src='https://raw.githubusercontent.com/atamagnini/mlops-cs553-fall24/main/assets/logo.png'></div>",
+    description="Buzzing with answers, but no honey included! 🐝",
     additional_inputs=[
         gr.Textbox(value="You are a friendly Chatbot.", label="System message"),
         gr.Slider(minimum=1, maximum=2048, value=512, step=1, label="Max new tokens"),
