@@ -36,6 +36,24 @@ def respond(
         response += token
         yield response
 
+# Custom CSS for styling the header and logo
+custom_css = """
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+#logo {
+    height: 50px; /* Set the height of the logo */
+    width: auto; /* Maintain aspect ratio */
+    position: absolute; /* Position the logo */
+    top: 20px; /* Distance from the top */
+    right: 20px; /* Distance from the right */
+}
+"""
+
 # Gradio interface with additional components
 demo = gr.ChatInterface(
     respond,
@@ -52,6 +70,7 @@ demo = gr.ChatInterface(
             label="Top-p (nucleus sampling)",
         ),
     ],
+    css=custom_css
 )
 
 if __name__ == "__main__":
