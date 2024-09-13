@@ -1,10 +1,12 @@
 import gradio as gr
-from huggingface_hub import InferenceClient
+import torch
+from transformers import pipeline
 
-# Initialize the InferenceClient
-client = InferenceClient("HuggingFaceH4/zephyr-7b-beta")
+# Initialize the local pipeline for the model
+pipe = pipeline("text-generation", model="microsoft/Phi-3-mini-4k-instruct", torch_dtype=torch.bfloat16, device_map="auto")
+# You can choose another model if needed, and adjust parameters as necessary
 
-# Define the response function
+# Define the response function for local execution
 def respond(
     message,
     history: list[tuple[str, str]],
@@ -25,14 +27,15 @@ def respond(
 
     response = ""
 
-    for message in client.chat_completion(
+    # Use the local pipeline to generate text
+    for message in pipe(
         messages,
-        max_tokens=max_tokens,
-        stream=True,
+        max_new_tokens=max_tokens,
         temperature=temperature,
+        do_sample=True,
         top_p=top_p,
     ):
-        token = message.choices[0].delta.content
+        token = message['generated_text'][-1]['content']
         response += token
         yield response
 
