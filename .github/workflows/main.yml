@@ -19,5 +19,5 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          git remote set-url origin https://atamagnini:${HF_TOKEN}@huggingface.co/spaces/CS553-CaseStudy1/chatbot
+          git remote set-url origin https://atamagnini:${HF_TOKEN}@huggingface.co/spaces/mlops-cs553-fall24/chatbot
           git push --force origin main
