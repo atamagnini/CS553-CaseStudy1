@@ -1,8 +1,14 @@
+import sys
+import os
 import pytest
-from app import respond  # Import chatbot function
+
+# Add the root directory of the project to the Python path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from app import respond  # Import your chatbot function
 
 def test_chatbot_response():
-    # Set up the input parameters for chatbot
+    # Set up the input parameters for your chatbot
     message = "Hello"
     history = []  # Empty history for a new conversation
     system_message = "You are a friendly chatbot."
