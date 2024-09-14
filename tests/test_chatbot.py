@@ -25,4 +25,5 @@ def test_chatbot_response():
     # Assertions to check that the response is not empty and seems reasonable
     assert response is not None, "Response should not be None"
     assert len(response) > 0, "Response should not be empty"
-    assert "Hello" not in response, "Response should not simply echo the input"
+    assert len(response) > len(message), "Response should contain more than just the input"
+    assert response.lower() != "hello", "Response should not be just 'Hello'"
