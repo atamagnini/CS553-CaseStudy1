@@ -4,3 +4,4 @@ transformers==4.44.2
 torch==2.2.1
 pytest==8.3.3
 numpy>=1.21.0,<1.26.0
+accelerate>=0.20.3
