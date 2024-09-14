@@ -1,2 +1,5 @@
 huggingface_hub==0.22.2
 gradio==4.39.*
+transformers==4.44.2
+torch==2.2.1
+pytest==8.3.3
